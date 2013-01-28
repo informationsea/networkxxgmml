@@ -1,5 +1,5 @@
-==============
-xgmml-networkx
-==============
+=============
+networkxxgmml
+=============
 
-XGMML parser for networks
+XGMML parser for networkx
