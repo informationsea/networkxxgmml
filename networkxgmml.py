@@ -5,13 +5,13 @@ class XGMMLParserHelper(object):
     """
     """
     
-    def __init__(self, graph=nx.DiGraph()):
+    def __init__(self):
         """
         
         Arguments:
         - `graph`: Network X graph object
         """
-        self._graph = graph
+        self._graph = nx.DiGraph()
         self._parser = xml.parsers.expat.ParserCreate()
         self._parser.StartElementHandler = self._start_element
         self._parser.EndElementHandler = self._end_element
