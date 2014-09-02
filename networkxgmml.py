@@ -51,7 +51,8 @@ class XGMMLParserHelper(object):
                 raise NotImplementedError(attr['type'])
 
         if tag == 'att' and self._tagstack[-2] == 'graph':
-            self._network_attr[attr['name']] = attr['value']
+            if 'value' in attr:
+                self._network_attr[attr['name']] = attr['value']
 
     def _end_element(self, tag):
         """

@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 
+from ez_setup import use_setuptools
+use_setuptools()
+
 from setuptools import setup
 
 setup(
-    name='networkxxgmml',
-    version='0.1',
+    name='networkxgmml',
+    version='0.1.1',
     description='XGMML parser for networkx',
     author='Yasunobu OKAMURA',
     author_email='okamura@informationsea.info',
     url='https://github.com/informationsea/xgmml-networkx',
-    pb_modules=['networkxxgmml'],
-    install_requires=['distribute', 'networkx']
+    py_modules=['networkxgmml'],
+    install_requires=['setuptools', 'networkx']
 )

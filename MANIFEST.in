@@ -1,0 +1,3 @@
+include ez_setup.py
+recursive-include example *.xgmml *.py
+recursive-exclude example/output *.xgmml
