@@ -7,11 +7,11 @@ from setuptools import setup
 
 setup(
     name='networkxgmml',
-    version='0.1.1',
+    version='0.1.2',
     description='XGMML parser for networkx',
     author='Yasunobu OKAMURA',
     author_email='okamura@informationsea.info',
-    url='https://github.com/informationsea/xgmml-networkx',
+    url='https://github.com/informationsea/networkxxgmml',
     py_modules=['networkxgmml'],
     install_requires=['setuptools', 'networkx']
 )
