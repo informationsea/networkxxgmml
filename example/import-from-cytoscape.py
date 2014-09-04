@@ -9,8 +9,8 @@ import json
 def _main():
     parser = argparse.ArgumentParser(description="Read network from Cytoscape")
     parser.add_argument('XGMML', default=file('./yeast-ppi.xgmml'), help='XGMML file exported from Cytoscape  default: %(default)s', nargs='?', type=argparse.FileType('r'))
-    parser.add_argument('edgelist', default='./output/yeast-ppi-edgelist.txt', nargs='?')
-    parser.add_argument('nodelist', default='./output/yeast-ppi-nodelist.txt', nargs='?')
+    parser.add_argument('edgelist', default='./output/yeast-ppi-edgelist.txt', nargs='?', help='edge list output path  [default: %(default)s]')
+    parser.add_argument('nodelist', default='./output/yeast-ppi-nodelist.txt', nargs='?', help='node list output path  [default: %(default)s]')
     options = parser.parse_args()
 
     g = networkxgmml.XGMMLReader(options.XGMML)
