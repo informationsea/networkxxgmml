@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph xmlns="http://www.cs.rpi.edu/XGMML" id="1383230285965" label="miRTarBase_hsa_r4.4">
+  <att xmlns="" label="RegIN Name" name="RegIN Name" value="miRTarBase_hsa_r4.4" type="string" />
+  <att xmlns="" label="Source File" name="Source File" value="hsa_MTI.csv" type="string" />
+  <node xmlns="" id="hsa-miR-542-3p" label="hsa-miR-542-3p">
+    <att type="list" name="identifiers">
+      <att type="string" name="identifiers" value="hsa-miR-542-3p" />
+      <att type="string" name="identifiers" value="MIMAT0003389" />
+    </att>
+    <att label="miRNA" name="miRNA" value="hsa-miR-542-3p" type="string" />
+    <att label="Species (miRNA)" name="Species (miRNA)" value="Homo sapiens" type="string" />
+    <att label="miRTarBase ID" name="miRTarBase ID" value="MIRT005363" type="string" />
+    <att label="label" name="label" value="hsa-miR-542-3p" type="string" />
+    <att label="biologicalType" name="biologicalType" value="miRNA" type="string" />
+  </node>
+  <node xmlns="" id="332" label="332">
+    <att label="Species (Target Gene)" name="Species (Target Gene)" value="Homo sapiens" type="string" />
+    <att type="list" name="identifiers">
+      <att type="string" name="identifiers" value="332" />
+      <att type="string" name="identifiers" value="O15392" />
+      <att type="string" name="identifiers" value="ENSG00000089685" />
+      <att type="string" name="identifiers" value="A3E0Z4" />
+      <att type="string" name="identifiers" value="H3BLT4" />
+      <att type="string" name="identifiers" value="A3E0Z5" />
+      <att type="string" name="identifiers" value="A3E0Z6" />
+      <att type="string" name="identifiers" value="A3E0Z7" />
+    </att>
+    <att label="label" name="label" value="BIRC5" type="string" />
+    <att label="biologicalType" name="biologicalType" value="gene" type="string" />
+    <att label="Target Gene (Entrez ID)" name="Target Gene (Entrez ID)" value="332" type="string" />
+    <att label="Target Gene" name="Target Gene" value="BIRC5" type="string" />
+  </node>
+  <node xmlns="" id="3611" label="3611">
+    <att label="Species (Target Gene)" name="Species (Target Gene)" value="Homo sapiens" type="string" />
+    <att type="list" name="identifiers">
+      <att type="string" name="identifiers" value="3611" />
+      <att type="string" name="identifiers" value="B7Z1I0" />
+      <att type="string" name="identifiers" value="B7Z418" />
+      <att type="string" name="identifiers" value="E9PNR4" />
+      <att type="string" name="identifiers" value="E9PQ27" />
+      <att type="string" name="identifiers" value="Q13418" />
+      <att type="string" name="identifiers" value="E9PQ52" />
+      <att type="string" name="identifiers" value="E9PM54" />
+      <att type="string" name="identifiers" value="ENSG00000166333" />
+    </att>
+    <att label="label" name="label" value="ILK" type="string" />
+    <att label="biologicalType" name="biologicalType" value="gene" type="string" />
+    <att label="Target Gene (Entrez ID)" name="Target Gene (Entrez ID)" value="3611" type="string" />
+    <att label="Target Gene" name="Target Gene" value="ILK" type="string" />
+  </node>
+  <node xmlns="" id="hsa-miR-370-3p" label="hsa-miR-370-3p">
+    <att type="list" name="identifiers">
+      <att type="string" name="identifiers" value="hsa-miR-370-3p" />
+    </att>
+    <att label="miRNA" name="miRNA" value="hsa-miR-370-3p" type="string" />
+    <att label="Species (miRNA)" name="Species (miRNA)" value="Homo sapiens" type="string" />
+    <att label="miRTarBase ID" name="miRTarBase ID" value="MIRT001074" type="string" />
+    <att label="label" name="label" value="hsa-miR-370-3p" type="string" />
+    <att label="biologicalType" name="biologicalType" value="miRNA" type="string" />
+  </node>
+  <node xmlns="" id="1326" label="1326">
+    <att label="Species (Target Gene)" name="Species (Target Gene)" value="Homo sapiens" type="string" />
+    <att type="list" name="identifiers">
+      <att type="string" name="identifiers" value="1326" />
+      <att type="string" name="identifiers" value="P41279" />
+      <att type="string" name="identifiers" value="ENSG00000107968" />
+      <att type="string" name="identifiers" value="Q5T857" />
+      <att type="string" name="identifiers" value="Q5T853" />
+      <att type="string" name="identifiers" value="Q5T854" />
+    </att>
+    <att label="label" name="label" value="MAP3K8" type="string" />
+    <att label="biologicalType" name="biologicalType" value="gene" type="string" />
+    <att label="Target Gene (Entrez ID)" name="Target Gene (Entrez ID)" value="1326" type="string" />
+    <att label="Target Gene" name="Target Gene" value="MAP3K8" type="string" />
+  </node>
+  <node xmlns="" id="1374" label="1374">
+    <att label="Species (Target Gene)" name="Species (Target Gene)" value="Homo sapiens" type="string" />
+    <att type="list" name="identifiers">
+      <att type="string" name="identifiers" value="1374" />
+      <att type="string" name="identifiers" value="Q8WZ48" />
+      <att type="string" name="identifiers" value="H3BP22" />
+      <att type="string" name="identifiers" value="P50416" />
+      <att type="string" name="identifiers" value="H3BMD2" />
+      <att type="string" name="identifiers" value="H3BUJ0" />
+      <att type="string" name="identifiers" value="H3BUV7" />
+      <att type="string" name="identifiers" value="ENSG00000110090" />
+    </att>
+    <att label="label" name="label" value="CPT1A" type="string" />
+    <att label="biologicalType" name="biologicalType" value="gene" type="string" />
+    <att label="Target Gene (Entrez ID)" name="Target Gene (Entrez ID)" value="1374" type="string" />
+    <att label="Target Gene" name="Target Gene" value="CPT1A" type="string" />
+  </node>
+  <node xmlns="" id="8091" label="8091">
+    <att label="Species (Target Gene)" name="Species (Target Gene)" value="Homo sapiens" type="string" />
+    <att type="list" name="identifiers">
+      <att type="string" name="identifiers" value="8091" />
+      <att type="string" name="identifiers" value="Q1M188" />
+      <att type="string" name="identifiers" value="F5H2A4" />
+      <att type="string" name="identifiers" value="Q1M185" />
+      <att type="string" name="identifiers" value="Q1M186" />
+      <att type="string" name="identifiers" value="H0YFY4" />
+      <att type="string" name="identifiers" value="Q1M187" />
+      <att type="string" name="identifiers" value="P52926" />
+      <att type="string" name="identifiers" value="F5H6H0" />
+      <att type="string" name="identifiers" value="B2KX87" />
+      <att type="string" name="identifiers" value="F5H2U8" />
+      <att type="string" name="identifiers" value="ENSG00000149948" />
+      <att type="string" name="identifiers" value="Q8IZX8" />
+    </att>
+    <att label="label" name="label" value="HMGA2" type="string" />
+    <att label="biologicalType" name="biologicalType" value="gene" type="string" />
+    <att label="Target Gene (Entrez ID)" name="Target Gene (Entrez ID)" value="8091" type="string" />
+    <att label="Target Gene" name="Target Gene" value="HMGA2" type="string" />
+  </node>
+   <node xmlns="" id="4763" label="4763">
+    <att label="Species (Target Gene)" name="Species (Target Gene)" value="Homo sapiens" type="string" />
+    <att type="list" name="identifiers">
+      <att type="string" name="identifiers" value="4763" />
+      <att type="string" name="identifiers" value="H0UIC3" />
+      <att type="string" name="identifiers" value="Q4W6X4" />
+      <att type="string" name="identifiers" value="B4DXP1" />
+      <att type="string" name="identifiers" value="Q7Z3J5" />
+      <att type="string" name="identifiers" value="B4DXH1" />
+      <att type="string" name="identifiers" value="H0Y465" />
+      <att type="string" name="identifiers" value="K7EP94" />
+      <att type="string" name="identifiers" value="P21359" />
+      <att type="string" name="identifiers" value="Q9UMU3" />
+      <att type="string" name="identifiers" value="ENSG00000196712" />
+      <att type="string" name="identifiers" value="J3KSB5" />
+    </att>
+    <att label="label" name="label" value="NF1" type="string" />
+    <att label="biologicalType" name="biologicalType" value="gene" type="string" />
+    <att label="Target Gene (Entrez ID)" name="Target Gene (Entrez ID)" value="4763" type="string" />
+    <att label="Target Gene" name="Target Gene" value="NF1" type="string" />
+  </node>
+
+  <edge xmlns="" id="3264" label="3264" source="hsa-miR-542-3p" target="332">
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="References (PMID)" name="References (PMID)" value="20728447" type="string" />
+    <att label="Experiments" name="Experiments" value="Luciferase reporter assay//Microarray//qRT-PCR//Western blot" type="string" />
+    <att label="Support Type" name="Support Type" value="Functional MTI" type="string" />
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="datasource" name="datasource" value="miRTarBase_hsa_r4.4" type="string" />
+  </edge>
+  <edge xmlns="" id="3935" label="3935" source="hsa-miR-542-3p" target="3611">
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="References (PMID)" name="References (PMID)" value="21860426" type="string" />
+    <att label="Experiments" name="Experiments" value="Immunoblot//Immunocytochemistry//Luciferase reporter assay" type="string" />
+    <att label="Support Type" name="Support Type" value="Functional MTI" type="string" />
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="datasource" name="datasource" value="miRTarBase_hsa_r4.4" type="string" />
+  </edge>
+  <edge xmlns="" id="3981" label="3981" source="hsa-miR-370-3p" target="4763">
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="References (PMID)" name="References (PMID)" value="23077663" type="string" />
+    <att label="Experiments" name="Experiments" value="Luciferase reporter assay" type="string" />
+    <att label="Support Type" name="Support Type" value="Functional MTI" type="string" />
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="datasource" name="datasource" value="miRTarBase_hsa_r4.4" type="string" />
+  </edge>
+  <edge xmlns="" id="1205" label="1205" source="hsa-miR-370-3p" target="1326">
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="References (PMID)" name="References (PMID)" value="17621267" type="string" />
+    <att label="Experiments" name="Experiments" value="Luciferase reporter assay//Western blot" type="string" />
+    <att label="Support Type" name="Support Type" value="Functional MTI" type="string" />
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="datasource" name="datasource" value="miRTarBase_hsa_r4.4" type="string" />
+  </edge>
+  <edge xmlns="" id="1954" label="1954" source="hsa-miR-370-3p" target="1374">
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="References (PMID)" name="References (PMID)" value="20124555" type="string" />
+    <att label="Experiments" name="Experiments" value="Luciferase reporter assay//qRT-PCR//Western blot" type="string" />
+    <att label="Support Type" name="Support Type" value="Functional MTI" type="string" />
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="datasource" name="datasource" value="miRTarBase_hsa_r4.4" type="string" />
+  </edge>
+  <edge xmlns="" id="1964" label="1964" source="hsa-miR-370-3p" target="8091">
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="References (PMID)" name="References (PMID)" value="19179606" type="string" />
+    <att label="Experiments" name="Experiments" value="Luciferase reporter assay" type="string" />
+    <att label="Support Type" name="Support Type" value="Non-Functional MTI" type="string" />
+    <att label="interaction" name="interaction" value="MTI" type="string" />
+    <att label="datasource" name="datasource" value="miRTarBase_hsa_r4.4" type="string" />
+  </edge>
+</graph>

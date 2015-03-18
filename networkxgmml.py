@@ -39,6 +39,9 @@ class XGMMLParserHelper(object):
             self._current_obj = dict(attr)
 
         if tag == 'att' and (self._tagstack[-2] == 'node' or self._tagstack[-2] == 'edge') and 'value' in attr:
+            if attr['name'] == 'label':
+                attr['name'] = '@label'
+
             if attr['type'] == 'string':
                 self._current_attr[attr['name']] = attr['value']
             elif attr['type'] == 'real':
