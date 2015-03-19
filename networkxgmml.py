@@ -39,9 +39,6 @@ class XGMMLParserHelper(object):
             self._current_obj = dict(attr)
 
         if tag == 'att' and (self._tagstack[-2] == 'node' or self._tagstack[-2] == 'edge') and 'value' in attr:
-            if attr['name'] == 'label':
-                attr['name'] = '@label'
-
             if attr['type'] == 'string':
                 self._current_attr[attr['name']] = attr['value']
             elif attr['type'] == 'real':
@@ -67,6 +64,9 @@ class XGMMLParserHelper(object):
 
         if tag == 'node':
             if 'label' in self._current_obj:
+                if 'label' in self._current_attr:
+                    self._current_attr['@label'] = self._current_attr['label']
+                    del self._current_attr['label']
                 self._graph.add_node(self._current_obj['id'], label=self._current_obj['label'], **self._current_attr)
             else:
                 self._graph.add_node(self._current_obj['id'], **self._current_attr)
