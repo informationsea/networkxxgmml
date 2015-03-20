@@ -26,7 +26,7 @@ def _main():
     with file(options.nodelist, 'w') as f:
         for onenode in g.nodes():
             print >>f, '\t'.join([onenode, json.dumps(g.node[onenode])])
-
+            print g.node[onenode]
 
     print 'node list is exported to {0}'.format(options.nodelist)
     
