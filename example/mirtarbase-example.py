@@ -26,10 +26,12 @@ def _main():
     with file(options.nodelist, 'w') as f:
         for onenode in g.nodes():
             print >>f, '\t'.join([onenode, json.dumps(g.node[onenode])])
-            print g.node[onenode]
 
     print 'node list is exported to {0}'.format(options.nodelist)
-    
+
+    output_xgmml_file_path = './output/mirtar-output.xgmml'
+    output_xgmml = open(output_xgmml_file_path, 'w')
+    networkxgmml.XGMMLWriter(output_xgmml, g, "New Graph")
 
 if __name__ == '__main__':
     _main()

@@ -150,10 +150,9 @@ def XGMMLWriter(file, graph, graph_name):
 
     print >>file, """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <graph directed="1"  xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.cs.rpi.edu/XGMML">
-<att name="selected" value="1" type="boolean" />
-<att name="name" value="{0}" type="string"/>
-<att name="shared name" value="{0}" type="string"/>
-""".format(graph_name)
+  <att name="selected" value="1" type="boolean" />
+  <att name="name" value="{0}" type="string"/>
+  <att name="shared name" value="{0}" type="string"/>""".format(graph_name)
 
     def quote(text):
         """
@@ -164,6 +163,23 @@ def XGMMLWriter(file, graph, graph_name):
 
         return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt')
 
+    def write_att_el(k, v, indent_count):
+        indentation_string = ''
+        for i in range(0, indent_count):
+            indentation_string += '  '
+        if isinstance(v, int):
+            print >>file, indentation_string + '<att name="{}" value="{}" type="integer" />'.format(k, v)
+        elif isinstance(v, bool):
+            print >>file, indentation_string + '<att name="{}" value="{}" type="boolean" />'.format(k, v)
+        elif isinstance(v, float):
+            print >>file, indentation_string + '<att name="{}" value="{}" type="real" />'.format(k, v)
+        elif hasattr(v, '__iter__'):
+            print >>file, indentation_string + '<att name="{}" type="list">'.format(k)
+            for item in v:
+                write_att_el(k, item, 3)
+            print >>file, indentation_string + '</att>'
+        else:
+            print >>file, indentation_string + '<att name="{}" value="{}" type="string" />'.format(k, quote(v))
 
     for onenode in graph.nodes(data=True):
         id = onenode[0]
@@ -175,29 +191,15 @@ def XGMMLWriter(file, graph, graph_name):
         else:
             label = id
         
-        print >>file, '<node id="{id}" label="{label}">'.format(id=id, label=label)
+        print >>file, '  <node id="{id}" label="{label}">'.format(id=id, label=label)
         for k, v in attr.iteritems():
-            if isinstance(v, int):
-                print >>file, '<att name="{}" value="{}" type="integer" />'.format(k, v)
-            elif isinstance(v, bool):
-                print >>file, '<att name="{}" value="{}" type="boolean" />'.format(k, v)
-            elif isinstance(v, float):
-                print >>file, '<att name="{}" value="{}" type="real" />'.format(k, v)
-            else:
-                print >>file, '<att name="{}" value="{}" type="string" />'.format(k, quote(v))
+            write_att_el(k, v, 2)
 
-        print >>file, '</node>'
+        print >>file, '  </node>'
         
     for oneedge in graph.edges(data=True):
-        print >>file, '<edge source="{}" target="{}">'.format(oneedge[0], oneedge[1])
+        print >>file, '  <edge source="{}" target="{}">'.format(oneedge[0], oneedge[1])
         for k, v in oneedge[2].iteritems():
-            if isinstance(v, int):
-                print >>file, '<att name="{}" value="{}" type="integer" />'.format(k, v)
-            elif isinstance(v, bool):
-                print >>file, '<att name="{}" value="{}" type="boolean" />'.format(k, v)
-            elif isinstance(v, float):
-                print >>file, '<att name="{}" value="{}" type="real" />'.format(k, v)
-            else:
-                print >>file, '<att name="{}" value="{}" type="string" />'.format(k, quote(v))
-        print >>file, '</edge>'
+            write_att_el(k, v, 2)
+        print >>file, '  </edge>'
     print >>file, '</graph>'
