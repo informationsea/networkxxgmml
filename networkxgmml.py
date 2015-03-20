@@ -17,8 +17,9 @@ class XGMMLParserHelper(object):
         self._parser.EndElementHandler = self._end_element
         self._tagstack = list()
 
-        self._network_attr = dict()
-        self._current_attr = dict()
+        self._network_att_el = dict()
+        self._current_att_el = dict()
+        self._current_list_att_el = list()
         self._current_obj = dict()
 
     def _start_element(self, tag, attr):
@@ -33,26 +34,51 @@ class XGMMLParserHelper(object):
         self._tagstack.append(tag)
 
         if tag == 'graph':
-            self._network_attr = dict()
+            self._network_att_el = dict()
         
         if tag == 'node' or tag == 'edge':
             self._current_obj = dict(attr)
 
-        if tag == 'att' and (self._tagstack[-2] == 'node' or self._tagstack[-2] == 'edge') and 'value' in attr:
-            if attr['type'] == 'string':
-                self._current_attr[attr['name']] = attr['value']
-            elif attr['type'] == 'real':
-                self._current_attr[attr['name']] = float(attr['value'])
-            elif attr['type'] == 'integer':
-                self._current_attr[attr['name']] = int(attr['value'])
-            elif attr['type'] == 'boolean':
-                self._current_attr[attr['name']] = bool(attr['value'])
-            else:
-                raise NotImplementedError(attr['type'])
+        if tag == 'att' and (self._tagstack[-2] == 'node' or self._tagstack[-2] == 'edge'):
+            if 'value' in attr:
+                self._current_att_el = self._parse_att_el(self._current_att_el, tag, attr)
+            elif attr['type'] == 'list':
+                self._current_list_name = attr['name']
+                self._current_att_el[attr['name']] = list()
+
+        if tag == 'att' and (self._tagstack[-2] == 'att'):
+            self._current_list_att_el = dict(attr)
+            if 'value' in attr:
+                self._current_list_att_el = self._parse_att_el(self._current_list_att_el, tag, attr)
+                self._current_att_el[self._current_list_name].append(self._current_list_att_el[attr['name']])
 
         if tag == 'att' and self._tagstack[-2] == 'graph':
             if 'value' in attr:
-                self._network_attr[attr['name']] = attr['value']
+                self._network_att_el[attr['name']] = attr['value']
+
+    def _parse_att_el(self, att_el, tag, attr):
+        """
+        
+        Arguments:
+        - `self`:
+        - `att_el`: att element. Can be child of node, edge or another att.
+        - `tag`:
+        - `attr`:
+        """
+
+        if 'value' in attr:
+            if attr['type'] == 'string':
+                att_el[attr['name']] = attr['value']
+            elif attr['type'] == 'real':
+                att_el[attr['name']] = float(attr['value'])
+            elif attr['type'] == 'integer':
+                att_el[attr['name']] = int(attr['value'])
+            elif attr['type'] == 'boolean':
+                att_el[attr['name']] = bool(attr['value'])
+            else:
+                raise NotImplementedError(attr['type'])
+
+            return att_el
 
     def _end_element(self, tag):
         """
@@ -64,14 +90,14 @@ class XGMMLParserHelper(object):
 
         if tag == 'node':
             if 'label' in self._current_obj:
-                if 'label' in self._current_attr:
-                    self._current_attr['@label'] = self._current_attr['label']
-                    del self._current_attr['label']
-                self._graph.add_node(self._current_obj['id'], label=self._current_obj['label'], **self._current_attr)
+                if 'label' in self._current_att_el:
+                    self._current_att_el['@label'] = self._current_att_el['label']
+                    del self._current_att_el['label']
+                self._graph.add_node(self._current_obj['id'], label=self._current_obj['label'], **self._current_att_el)
             else:
-                self._graph.add_node(self._current_obj['id'], **self._current_attr)
+                self._graph.add_node(self._current_obj['id'], **self._current_att_el)
         elif tag == 'edge':
-            self._graph.add_edge(self._current_obj['source'], self._current_obj['target'], **self._current_attr)
+            self._graph.add_edge(self._current_obj['source'], self._current_obj['target'], **self._current_att_el)
 
         self._tagstack.pop()
 
@@ -101,7 +127,7 @@ class XGMMLParserHelper(object):
         - `self`:
         """
 
-        return self._network_attr
+        return self._network_att_el
 
 def XGMMLReader(file):
     """
