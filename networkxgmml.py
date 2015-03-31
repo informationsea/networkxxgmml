@@ -161,7 +161,7 @@ def XGMMLWriter(file, graph, graph_name):
         - `text`:
         """
 
-        return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt')
+        return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
     def write_att_el(k, v, indent_count):
         indentation_string = ''
