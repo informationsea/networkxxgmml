@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph xmlns="http://www.cs.rpi.edu/XGMML" id="1" label="1">
+  <node xmlns="" id="A" label="A">
+    <att label="color" name="color" type="string" value="green"/>
+  </node>
+  <node xmlns="" id="B" label="B">
+  </node>
+  <node xmlns="" id="C" label="C">
+    <att label="color" name="color" type="string" value="orange"/>
+  </node>
+  <node xmlns="" id="D" label="D">
+  </node>
+</graph>
