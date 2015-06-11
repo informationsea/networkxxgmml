@@ -1,6 +1,7 @@
 import xml.parsers.expat
 import networkx as nx
 
+
 class XGMMLParserHelper(object):
     """
     """
@@ -36,23 +37,25 @@ class XGMMLParserHelper(object):
         if tag == 'graph':
             self._network_att_el = dict()
         
-        if tag == 'node' or tag == 'edge':
+        elif tag == 'node' or tag == 'edge':
             self._current_obj = dict(attr)
+            self._current_att_el = dict()
+            self._current_list_att_el = list()
 
-        if tag == 'att' and (self._tagstack[-2] == 'node' or self._tagstack[-2] == 'edge'):
+        elif tag == 'att' and (self._tagstack[-2] == 'node' or self._tagstack[-2] == 'edge'):
             if 'value' in attr:
                 self._current_att_el = self._parse_att_el(self._current_att_el, tag, attr)
             elif attr['type'] == 'list':
                 self._current_list_name = attr['name']
                 self._current_att_el[attr['name']] = list()
 
-        if tag == 'att' and (self._tagstack[-2] == 'att'):
+        elif tag == 'att' and (self._tagstack[-2] == 'att'):
             self._current_list_att_el = dict(attr)
             if 'value' in attr:
                 self._current_list_att_el = self._parse_att_el(self._current_list_att_el, tag, attr)
                 self._current_att_el[self._current_list_name].append(self._current_list_att_el[attr['name']])
 
-        if tag == 'att' and self._tagstack[-2] == 'graph':
+        elif tag == 'att' and self._tagstack[-2] == 'graph':
             if 'value' in attr:
                 self._network_att_el[attr['name']] = attr['value']
 
