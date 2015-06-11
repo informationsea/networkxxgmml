@@ -7,7 +7,7 @@ from setuptools import setup
 
 setup(
     name='networkxgmml',
-    version='0.1.4',
+    version='0.1.5',
     description='XGMML parser for networkx',
     author='Yasunobu OKAMURA',
     author_email='okamura@informationsea.info',
