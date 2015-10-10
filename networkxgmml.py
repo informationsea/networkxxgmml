@@ -1,7 +1,6 @@
 import xml.parsers.expat
 import networkx as nx
 
-
 class XGMMLParserHelper(object):
     """
     """
@@ -37,25 +36,23 @@ class XGMMLParserHelper(object):
         if tag == 'graph':
             self._network_att_el = dict()
         
-        elif tag == 'node' or tag == 'edge':
+        if tag == 'node' or tag == 'edge':
             self._current_obj = dict(attr)
-            self._current_att_el = dict()
-            self._current_list_att_el = list()
 
-        elif tag == 'att' and (self._tagstack[-2] == 'node' or self._tagstack[-2] == 'edge'):
+        if tag == 'att' and (self._tagstack[-2] == 'node' or self._tagstack[-2] == 'edge'):
             if 'value' in attr:
                 self._current_att_el = self._parse_att_el(self._current_att_el, tag, attr)
             elif attr['type'] == 'list':
                 self._current_list_name = attr['name']
                 self._current_att_el[attr['name']] = list()
 
-        elif tag == 'att' and (self._tagstack[-2] == 'att'):
+        if tag == 'att' and (self._tagstack[-2] == 'att'):
             self._current_list_att_el = dict(attr)
             if 'value' in attr:
                 self._current_list_att_el = self._parse_att_el(self._current_list_att_el, tag, attr)
                 self._current_att_el[self._current_list_name].append(self._current_list_att_el[attr['name']])
 
-        elif tag == 'att' and self._tagstack[-2] == 'graph':
+        if tag == 'att' and self._tagstack[-2] == 'graph':
             if 'value' in attr:
                 self._network_att_el[attr['name']] = attr['value']
 
@@ -132,7 +129,8 @@ class XGMMLParserHelper(object):
 
         return self._network_att_el
 
-def XGMMLReader(file):
+
+def XGMMLReader(graph_file):
     """
     
     Arguments:
@@ -140,22 +138,23 @@ def XGMMLReader(file):
     """
 
     parser = XGMMLParserHelper()
-    parser.parseFile(file)
+    parser.parseFile(graph_file)
     return parser.graph()
 
 
-def XGMMLWriter(file, graph, graph_name):
+def XGMMLWriter(graph_file, graph, graph_name, directed=1):
+    assert (directed == 0) or (directed == 1)
     """
     
     Arguments:
     - `graph`:
     """
 
-    print >>file, """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<graph directed="1"  xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.cs.rpi.edu/XGMML">
+    print >>graph_file, """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<graph directed="{directed}"  xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.cs.rpi.edu/XGMML">
   <att name="selected" value="1" type="boolean" />
   <att name="name" value="{0}" type="string"/>
-  <att name="shared name" value="{0}" type="string"/>""".format(graph_name)
+  <att name="shared name" value="{0}" type="string"/>""".format(graph_name, directed=directed)
 
     def quote(text):
         """
@@ -171,18 +170,18 @@ def XGMMLWriter(file, graph, graph_name):
         for i in range(0, indent_count):
             indentation_string += '  '
         if isinstance(v, int):
-            print >>file, indentation_string + '<att name="{}" value="{}" type="integer" />'.format(k, v)
+            print >>graph_file, indentation_string + '<att name="{}" value="{}" type="integer" />'.format(k, v)
         elif isinstance(v, bool):
-            print >>file, indentation_string + '<att name="{}" value="{}" type="boolean" />'.format(k, v)
+            print >>graph_file, indentation_string + '<att name="{}" value="{}" type="boolean" />'.format(k, v)
         elif isinstance(v, float):
-            print >>file, indentation_string + '<att name="{}" value="{}" type="real" />'.format(k, v)
+            print >>graph_file, indentation_string + '<att name="{}" value="{}" type="real" />'.format(k, v)
         elif hasattr(v, '__iter__'):
-            print >>file, indentation_string + '<att name="{}" type="list">'.format(k)
+            print >>graph_file, indentation_string + '<att name="{}" type="list">'.format(k)
             for item in v:
                 write_att_el(k, item, 3)
-            print >>file, indentation_string + '</att>'
+            print >>graph_file, indentation_string + '</att>'
         else:
-            print >>file, indentation_string + '<att name="{}" value="{}" type="string" />'.format(k, quote(v))
+            print >>graph_file, indentation_string + '<att name="{}" value="{}" type="string" />'.format(k, quote(v))
 
     for onenode in graph.nodes(data=True):
         id = onenode[0]
@@ -193,16 +192,23 @@ def XGMMLWriter(file, graph, graph_name):
             del attr['label']
         else:
             label = id
-        
-        print >>file, '  <node id="{id}" label="{label}">'.format(id=id, label=label)
+
+        print >>graph_file, '  <node id="{id}" label="{label}">'.format(id=id, label=label)
+
+        # Add color element
+        if 'color' in attr:
+            color = attr['color']
+            del attr['color']
+            print >>graph_file, '  <graphics fill="{color}" />'.format(color=color)
+
         for k, v in attr.iteritems():
             write_att_el(k, v, 2)
 
-        print >>file, '  </node>'
+        print >>graph_file, '  </node>'
         
     for oneedge in graph.edges(data=True):
-        print >>file, '  <edge source="{}" target="{}">'.format(oneedge[0], oneedge[1])
+        print >>graph_file, '  <edge source="{}" target="{}">'.format(oneedge[0], oneedge[1])
         for k, v in oneedge[2].iteritems():
             write_att_el(k, v, 2)
-        print >>file, '  </edge>'
-    print >>file, '</graph>'
+        print >>graph_file, '  </edge>'
+    print >>graph_file, '</graph>'
