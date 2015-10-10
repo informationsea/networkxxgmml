@@ -142,19 +142,21 @@ def XGMMLReader(graph_file):
     return parser.graph()
 
 
-def XGMMLWriter(graph_file, graph, graph_name, directed=1):
-    assert (directed == 0) or (directed == 1)
+def XGMMLWriter(graph_file, graph, graph_name, directed=True):
     """
     
     Arguments:
-    - `graph`:
+    - `graph_file` output network file (file object)
+    - `graph`: NetworkX Graph Object
+    - `graph_name`: Name of the graph
+    - `directed`: is directed or not
     """
 
     print >>graph_file, """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <graph directed="{directed}"  xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.cs.rpi.edu/XGMML">
   <att name="selected" value="1" type="boolean" />
   <att name="name" value="{0}" type="string"/>
-  <att name="shared name" value="{0}" type="string"/>""".format(graph_name, directed=directed)
+  <att name="shared name" value="{0}" type="string"/>""".format(graph_name, directed=(1 if directed else 0))
 
     def quote(text):
         """

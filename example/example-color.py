@@ -21,13 +21,11 @@ g1.add_edge('e', 'f', weight=0.5)
 g1.add_edge('g', '1', weight=4.5)
 
 
-f = open('example_mynml.xgmml', 'w+')
-nml.XGMMLWriter(f, g1, 'Test nml1')
-f.close()
+with open('output/example_mynml.xgmml', 'w+') as f:
+    nml.XGMMLWriter(f, g1, 'Test nml1')
 
-f = open('example_mynml_undir.xgmml', 'w+')
-nml.XGMMLWriter(f, g1, 'Test nml2', directed=0)
-f.close()
+with open('output/example_mynml_undir.xgmml', 'w+') as f:
+    nml.XGMMLWriter(f, g1, 'Test nml2', directed=False)
 
 # An assertion error example
 # f = open('example_mynml_fail.xgmml', 'w+')
