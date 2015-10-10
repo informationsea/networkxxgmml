@@ -17,20 +17,21 @@ That's all!
 APIs
 ----
 
-XGMMLReader(file)
+XGMMLReader(graph_file)
 -----------------
 
-Argument: file: a file-like object contains XGMML
+Argument: graph_file: a file-like object contains XGMML
 
 Return: a networkx.DiGraph object
 
     
-XGMMLWriter(file, graph, graph_name)
+XGMMLWriter(graph_file, graph, graph_name, directed=True)
 ------------------------------------
 
 * file: a file-like object to write XGMML
 * graph: a networkx.Graph object
 * graph_name: a name of a network
+* directed: is directed graph or not
 
 -------
 License
@@ -38,8 +39,12 @@ License
 
 Distributed with a MIT license
 
----------
-Copyright
----------
+------------
+Contributors
+------------
 
-Copyright (C) 2014 Yasunobu OKAMURA
+* Yasunobu OKAMURA
+* Anders Riutta
+* Jeff Yunes
+* Gustavo Pereira
+
