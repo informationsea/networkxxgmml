@@ -232,8 +232,22 @@ def XGMMLWriter(graph_file, graph, graph_name, directed=True):
         graph_file.write('  </node>\n')
 
     for oneedge in graph.edges(data=True):
-        graph_file.write('  <edge source="{}" target="{}">\n'.format(
-            oneedge[0], oneedge[1]))
+        #
+        # The spec, http://cgi5.cs.rpi.edu/research/groups/pb/punin/public_html/XGMML/draft-xgmml.html#GlobalA,
+        # requires an "id", even for edges. This id is supposed to be unique across the entire document, so it
+        # can't be equal to one of the node ids. We're making the assumption that whoever created the graph
+        # object knew about and respected the "uniqueness" requirement, and passed a suitable id as the attribute
+        # "id" to the edge. If the creator of the graph *didn't* pass a unique id, the best I can come up with at
+        # this moment is to just ignore the id requirement entirely.
+        #
+        if 'id' in oneedge[2]:
+            edge_id = oneedge[2].pop("id", None)
+            graph_file.write('  <edge id="{}" source="{}" target="{}">\n'.format(
+                edge_id, oneedge[0], oneedge[1]))
+        else:
+            graph_file.write('  <edge source="{}" target="{}">\n'.format(
+                oneedge[0], oneedge[1]))
+
         for k, v in iter(oneedge[2].items()):
             write_att_el(k, v, 2)
         graph_file.write('  </edge>\n')
