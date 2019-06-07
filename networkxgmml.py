@@ -224,7 +224,7 @@ def XGMMLWriter(graph_file, graph, graph_name, directed=True):
             color = attr['color']
             del attr['color']
             graph_file.write(
-                '  <graphics fill="{color}" />\n'.format(color=color))
+                '    <graphics fill="{color}" />\n'.format(color=color))
 
         for k, v in iter(attr.items()):
             write_att_el(k, v, 2)
