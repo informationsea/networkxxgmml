@@ -194,6 +194,10 @@ def XGMMLWriter(graph_file, graph, graph_name, directed=True):
             graph_file.write(
                 indentation_string +
                 '<att name="{}" value="{}" type="real" />\n'.format(k, v))
+        elif isinstance(v, str):
+            graph_file.write(
+                indentation_string +
+                '<att name="{}" value="{}" type="string" />\n'.format(k, v))
         elif hasattr(v, '__iter__'):
             graph_file.write(
                 indentation_string + '<att name="{}" type="list">\n'.format(k))
