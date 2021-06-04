@@ -197,7 +197,7 @@ def XGMMLWriter(graph_file, graph, graph_name, directed=True):
         elif isinstance(v, str):
             graph_file.write(
                 indentation_string +
-                '<att name="{}" value="{}" type="string" />\n'.format(k, v))
+                '<att name="{}" value="{}" type="string" />\n'.format(k, quote(v)))
         elif hasattr(v, '__iter__'):
             graph_file.write(
                 indentation_string + '<att name="{}" type="list">\n'.format(k))
@@ -205,10 +205,7 @@ def XGMMLWriter(graph_file, graph, graph_name, directed=True):
                 write_att_el(k, item, 3)
             graph_file.write(indentation_string + '</att>\n')
         else:
-            graph_file.write(
-                indentation_string +
-                '<att name="{}" value="{}" type="string" />\n'.format(k,
-                                                                    quote(v)))
+            raise TypeError(f'Cannot match type of attribute:{type(v)}')
 
     for onenode in graph.nodes(data=True):
         id = onenode[0]
